@@ -56,7 +56,7 @@ local fb_finders = require "telescope._extensions.file_browser.finders"
 local fb_picker = require "telescope._extensions.file_browser.picker"
 local fb_config = require "telescope._extensions.file_browser.config"
 
-local file_browser = function(opts)
+local file_browser = function(opts, callback)
   opts = opts or {}
   local defaults = (function()
     if fb_config.values.theme then
@@ -88,6 +88,7 @@ local file_browser = function(opts)
   end
   local popts = vim.tbl_deep_extend("force", defaults, opts)
   fb_picker(popts)
+  callback()
 end
 
 return telescope.register_extension {
